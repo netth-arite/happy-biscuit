@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="The Biscuit Vault - browse happy biscuit's finest (fictional) cookie collection.">
+  <title>the biscuit vault | happy biscuit</title>
+  <link rel="icon" type="image/jpeg" href="cookies/logo.jpeg">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+  <nav class="main-nav">
+    <a href="index.html" class="main-nav__brand">
+      <img src="cookies/logo.jpeg" alt="Logo">
+      happy biscuit
+    </a>
+    <button class="nav-toggle" aria-label="Toggle navigation">
+      <span></span><span></span><span></span>
+    </button>
+    <ul class="main-nav__links">
+      <li><a href="index.html" class="nav__link">Home</a></li>
+      <li><a href="index.html#about" class="nav__link">About Me</a></li>
+      <li><a href="shop.html" class="nav__link nav__link--active">Shop</a></li>
+      <li><a href="contact.html" class="nav__link">Contact Me</a></li>
+    </ul>
+  </nav>
+
+  <main>
+    <section class="vault">
+      <h1 class="section-heading">the biscuit vault</h1>
+      <p class="vault__intro">Click any cookie to unlock its deepest secret.</p>
+      <div class="vault__grid">
+        <a href="meme-pages/meme-1.html" class="cookie-card fade-in">
+          <div class="cookie-card__img-wrap">
+            <img src="cookies/0bb749acf3b09fd9e7eaf8d662d48c46.jpg" alt="Choco Chunk Chaos" class="cookie-card__img">
+          </div>
+          <div class="cookie-card__body">
+            <h2 class="cookie-card__name">Choco Chunk Chaos</h2>
+            <p class="cookie-card__desc">Made with chocochips and a little essence of your soul.</p>
+            <span class="cookie-card__price">12 sherlings</span>
+          </div>
+        </a>
+
+        <a href="meme-pages/meme-2.html" class="cookie-card fade-in">
+          <div class="cookie-card__img-wrap">
+            <img src="cookies/d202f01f8742896b2e9293794746abb3.jpg" alt="Gingerbread Gary" class="cookie-card__img">
+          </div>
+          <div class="cookie-card__body">
+            <h2 class="cookie-card__name">Gingerbread Gary</h2>
+            <p class="cookie-card__desc">Gary didn't ask to be born. But here he is. Delicious.</p>
+            <span class="cookie-card__price">8 sherlings</span>
+          </div>
+        </a>
+
+        <a href="meme-pages/meme-3.html" class="cookie-card fade-in">
+          <div class="cookie-card__img-wrap">
+            <img src="cookies/be0731d63a6438e7cceb5dc668f498cb.jpg" alt="The Existential Macaron"
+              class="cookie-card__img">
+          </div>
+          <div class="cookie-card__body">
+            <h2 class="cookie-card__name">The Existential Macaron</h2>
+            <p class="cookie-card__desc">Tastes like overthinking at 3am with a hint of vanilla.</p>
+            <span class="cookie-card__price">15 sherlings</span>
+          </div>
+        </a>
+
+        <a href="meme-pages/meme-4.html" class="cookie-card fade-in">
+          <div class="cookie-card__img-wrap">
+            <img src="cookies/949963bbc929cd40c28bfbba03d49da6.jpg" alt="Snickerdoodle of Doom"
+              class="cookie-card__img">
+          </div>
+          <div class="cookie-card__body">
+            <h2 class="cookie-card__name">Snickerdoodle of Doom</h2>
+            <p class="cookie-card__desc">Cinnamon, sugar, and an unreasonable amount of confidence.</p>
+            <span class="cookie-card__price">10 sherlings</span>
+          </div>
+        </a>
+
+        <a href="meme-pages/meme-5.html" class="cookie-card fade-in">
+          <div class="cookie-card__img-wrap">
+            <img src="cookies/c8836d11c38e79df4db8cf77bc89e4ef.jpg" alt="Angel Crumbs" class="cookie-card__img">
+          </div>
+          <div class="cookie-card__body">
+            <h2 class="cookie-card__name">Angel Crumbs</h2>
+            <p class="cookie-card__desc">Blessed by a cookie angel. Do not question the wings.</p>
+            <span class="cookie-card__price">18 sherlings</span>
+          </div>
+        </a>
+
+        <a href="meme-pages/meme-6.html" class="cookie-card fade-in">
+          <div class="cookie-card__img-wrap">
+            <img src="cookies/413847bf3a930a74cff3658386adf0cb.jpg" alt="Orbit-O's" class="cookie-card__img">
+          </div>
+          <div class="cookie-card__body">
+            <h2 class="cookie-card__name">Orbit-O's</h2>
+            <p class="cookie-card__desc">These cookies orbit your tastebuds. Literally astronomical.</p>
+            <span class="cookie-card__price">14 sherlings</span>
+          </div>
+        </a>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <p class="site-footer__brand">happy biscuit</p>
+    <p class="site-footer__copy">&copy; 2026 happy biscuit. All crumbs reserved.</p>
+    <p class="site-footer__disclaimer">
+      Disclaimer: happy biscuit is not a real company and is entirely part of a joke.
+      The FSSAI registration claim is also completely fictional. No cookies were harmed
+      in the making of this website.
+    </p>
+  </footer>
+
+  <script>
+    const toggle = document.querySelector('.nav-toggle');
+    const navLinks = document.querySelector('.main-nav__links');
+    if (toggle) toggle.addEventListener('click', () => navLinks.classList.toggle('open'));
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+    }, { threshold: 0.12 });
+    document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+  </script>
+</body>
+
+</html>

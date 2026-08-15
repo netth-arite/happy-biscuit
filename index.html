@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Happy Biscuit - the best (and entirely fictional) cookie brand out there.">
+  <title>happy biscuit</title>
+  <link rel="icon" type="image/jpeg" href="cookies/logo.jpeg">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+  <nav class="main-nav">
+    <a href="index.html" class="main-nav__brand">
+      <img src="cookies/logo.jpeg" alt="Logo">
+      happy biscuit
+    </a>
+    <button class="nav-toggle" aria-label="Toggle navigation">
+      <span></span><span></span><span></span>
+    </button>
+    <ul class="main-nav__links">
+      <li><a href="index.html" class="nav__link nav__link--active">Home</a></li>
+      <li><a href="index.html#about" class="nav__link">About Me</a></li>
+      <li><a href="shop.html" class="nav__link">Shop</a></li>
+      <li><a href="contact.html" class="nav__link">Contact Me</a></li>
+    </ul>
+  </nav>
+
+  <main>
+    <section class="hero">
+      <h1 class="hero__title">happy biscuit</h1>
+      <p class="hero__tagline">Baked with love, chaos, and questionable life choices.</p>
+      <div class="hero__cta">
+        <a href="shop.html" class="btn btn--primary">Enter the biscuit vault</a>
+      </div>
+    </section>
+
+    <section id="about" class="about">
+      <h2 class="section-heading">about me</h2>
+      <div class="about__grid">
+        <div class="about__card fade-in">
+          <h3 class="about__card-title">The human behind the biscuit</h3>
+          <p>Hi, I'm happy biscuit, and I'm a big F1 enthusiast! I also love to code, build and network with people. I
+            play guitar, piano and a little bit of violin. I'm a big fan of cooking too. Well enough talk about me,
+            let's talk about happy biscuit (not me I swear).</p>
+        </div>
+        <div class="about__card fade-in">
+          <h3 class="about__card-title">The brand</h3>
+          <p>So happy biscuit is the best cookie brand out there. It's FSSAI registered and all I promise. The nutrient
+            contents in these things will blow your mind. If you're interested in it head over to the <a
+              href="shop.html">shop page</a>.</p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <p class="site-footer__brand">happy biscuit</p>
+    <p class="site-footer__copy">&copy; 2026 happy biscuit. All crumbs reserved.</p>
+    <p class="site-footer__disclaimer">
+      Disclaimer: happy biscuit is not a real company and is entirely part of a joke.
+      The FSSAI registration claim is also completely fictional. No cookies were harmed
+      in the making of this website.
+    </p>
+  </footer>
+
+  <div class="cookie-popup" id="cookiePopup">
+    <img src="cookie popup.jpg" alt="Cookie Consent" class="cookie-popup__img">
+    <div class="cookie-popup__content">
+      <p>Allow cookies? We promise they're mostly chocolate chips and not tracking data.</p>
+      <button class="btn btn--primary" id="acceptCookies"
+        onclick="localStorage.setItem('cookieAccepted', 'true'); document.getElementById('cookiePopup').classList.remove('visible'); document.getElementById('cookiePopup').style.display='none';"
+        style="padding: 0.5rem 1rem; font-size: 0.9rem; margin-top: 0.5rem;">Sure, I'm hungry</button>
+    </div>
+  </div>
+
+  <script>
+    const toggle = document.querySelector('.nav-toggle');
+    const navLinks = document.querySelector('.main-nav__links');
+    if (toggle) toggle.addEventListener('click', () => navLinks.classList.toggle('open'));
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+    }, { threshold: 0.12 });
+    document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+
+    const popup = document.getElementById('cookiePopup');
+    const acceptBtn = document.getElementById('acceptCookies');
+    if (popup) {
+      if (localStorage.getItem('cookieAccepted') === 'true') {
+        popup.classList.remove('visible');
+        popup.style.display = 'none';
+      } else {
+        popup.classList.add('visible');
+      }
+    }
+    if (popup && acceptBtn) {
+      acceptBtn.addEventListener('click', () => {
+        localStorage.setItem('cookieAccepted', 'true');
+        popup.classList.remove('visible');
+        popup.style.display = 'none';
+      });
+    }
+  </script>
+</body>
+
+</html>
