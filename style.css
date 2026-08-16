@@ -648,3 +648,239 @@ img {
   line-height: 1.4;
   margin-bottom: 0.8rem;
 }
+
+
+/* =====================================================================
+   RESPONSIVE / MOBILE OVERRIDES
+   Everything below is additive. Nothing above this line is modified,
+   so the desktop/laptop experience (> 1024px) is completely untouched.
+   ===================================================================== */
+
+/* ---- tablet: start re-flowing multi-column grids ---- */
+@media (max-width: 1024px) {
+  .about__grid {
+    grid-template-columns: 1fr;
+  }
+
+  .vault__grid {
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  }
+}
+
+/* ---- phones ---- */
+@media (max-width: 767px) {
+
+  html,
+  body {
+    overflow-x: hidden;
+    width: 100%;
+  }
+
+  /* prevent any stray wide element from forcing horizontal scroll */
+  main,
+  section,
+  .about__grid,
+  .vault__grid {
+    max-width: 100%;
+  }
+
+  /* ---- nav: hamburger + slide-down drawer ---- */
+  .main-nav {
+    padding: 0 1.1rem;
+    height: 60px;
+    position: relative;
+  }
+
+  .main-nav__brand {
+    font-size: 1.3rem;
+  }
+
+  .main-nav__brand img {
+    height: 28px;
+    width: 28px;
+  }
+
+  .nav-toggle {
+    display: flex;
+    width: 48px;
+    height: 48px;
+    align-items: center;
+    justify-content: center;
+    z-index: 210;
+    position: relative;
+  }
+
+  .nav-toggle span {
+    transition: transform 0.3s var(--ease), opacity 0.2s var(--ease);
+  }
+
+  .nav-toggle.open span:nth-child(1) {
+    transform: translateY(7px) rotate(45deg);
+  }
+
+  .nav-toggle.open span:nth-child(2) {
+    opacity: 0;
+  }
+
+  .nav-toggle.open span:nth-child(3) {
+    transform: translateY(-7px) rotate(-45deg);
+  }
+
+  .main-nav__links {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    flex-direction: column;
+    gap: 0;
+    background: var(--chocolate);
+    max-height: 0;
+    overflow: hidden;
+    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.22);
+    transition: max-height 0.4s var(--ease);
+    z-index: 200;
+  }
+
+  .main-nav__links.open {
+    max-height: 320px;
+  }
+
+  .main-nav__links li {
+    width: 100%;
+  }
+
+  .nav__link {
+    display: flex;
+    align-items: center;
+    min-height: 48px;
+    width: 100%;
+    padding: 0 1.5rem;
+    font-size: 1rem;
+    border-top: 1px solid rgba(255, 255, 255, 0.06);
+  }
+
+  /* underline animation doesn't suit a full-width row link */
+  .nav__link::after {
+    display: none;
+  }
+
+  .nav__link:hover,
+  .nav__link--active {
+    background: rgba(212, 165, 116, 0.14);
+  }
+
+  /* ---- hero: lighter background for mobile performance ---- */
+  .hero {
+    min-height: 56vh;
+    padding: 3rem 1.25rem;
+    /* desktop-only radial gradients suppressed on mobile */
+    background: linear-gradient(165deg, var(--champagne-light) 0%, var(--champagne) 60%, var(--champagne-dark) 100%);
+  }
+
+  .hero__title {
+    text-shadow: 2px 2px 0 var(--champagne-dark);
+  }
+
+  /* ---- touch targets ---- */
+  .btn {
+    min-height: 48px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0.85rem 1.75rem;
+    width: 100%;
+  }
+
+  .hero__cta .btn {
+    width: auto;
+    min-width: 220px;
+  }
+
+  /* ---- about ---- */
+  .about {
+    padding: 3rem 1.25rem;
+  }
+
+  .about__grid {
+    gap: 1.25rem;
+  }
+
+  .about__card {
+    padding: 1.75rem;
+  }
+
+  /* ---- vault (shop) ---- */
+  .vault {
+    padding: 3rem 1.25rem;
+  }
+
+  .vault__grid {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+
+  .cookie-card__img-wrap {
+    height: 200px;
+  }
+
+  /* ---- contact ---- */
+  .contact {
+    padding: 3rem 1.25rem;
+  }
+
+  .contact__form {
+    padding: 1.75rem 1.25rem;
+  }
+
+  .form-group input,
+  .form-group textarea {
+    min-height: 48px;
+    /* 16px prevents iOS Safari auto-zoom on focus */
+    font-size: 16px;
+    padding: 0.9rem 1rem;
+  }
+
+  .form-group textarea {
+    min-height: 140px;
+  }
+
+  .contact__form .btn {
+    width: 100%;
+  }
+
+  /* ---- meme page ---- */
+  .meme-page {
+    padding: 2.5rem 1.25rem;
+  }
+
+  .meme-page__back .btn {
+    width: auto;
+    min-width: 200px;
+  }
+
+  /* ---- footer ---- */
+  .site-footer {
+    padding: 2rem 1.25rem;
+  }
+
+  /* ---- cookie popup: full-width bar instead of floating card ---- */
+  .cookie-popup {
+    left: 1rem;
+    right: 1rem;
+    bottom: 1rem;
+    max-width: none;
+    padding: 1.25rem;
+    gap: 1rem;
+  }
+
+  .cookie-popup__img {
+    width: 56px;
+    height: 56px;
+  }
+
+  .cookie-popup #acceptCookies {
+    width: 100%;
+    min-height: 48px;
+    margin-top: 0.4rem;
+  }
+}
