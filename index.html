@@ -4,8 +4,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="google-site-verification" content="nIFU0pcRCwDJZfzqpTaTasd95YEaMMZK-14H7f_7zFY" />
-  <meta name="description" content="Happy Biscuit - the best (and entirely fictional) cookie brand out there.">
+  <meta name="description" content="Happy Biscuit - the best cookie brand out there.">
   <title>happy biscuit</title>
   <link rel="icon" type="image/jpeg" href="cookies/logo.jpeg">
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -20,10 +19,10 @@
       <img src="cookies/logo.jpeg" alt="Logo">
       happy biscuit
     </a>
-    <button class="nav-toggle" aria-label="Toggle navigation">
+    <button class="nav-toggle" aria-label="Toggle navigation" aria-expanded="false" aria-controls="mainNavLinks">
       <span></span><span></span><span></span>
     </button>
-    <ul class="main-nav__links">
+    <ul class="main-nav__links" id="mainNavLinks">
       <li><a href="index.html" class="nav__link nav__link--active">Home</a></li>
       <li><a href="index.html#about" class="nav__link">About Me</a></li>
       <li><a href="shop.html" class="nav__link">Shop</a></li>
@@ -34,7 +33,7 @@
   <main>
     <section class="hero">
       <h1 class="hero__title">happy biscuit</h1>
-      <p class="hero__tagline">Baked with chaos and questionable life choices.</p>
+      <p class="hero__tagline">Baked with love, chaos, and questionable life choices.</p>
       <div class="hero__cta">
         <a href="shop.html" class="btn btn--primary">Enter the biscuit vault</a>
       </div>
@@ -45,8 +44,9 @@
       <div class="about__grid">
         <div class="about__card fade-in">
           <h3 class="about__card-title">The human behind the biscuit</h3>
-          <p>Hey there, im Happy Biscuit. Im a big F1 enthusiast. I love to cook, write literature, code, play instruments and do a lot of other stuff. Well enough talk about me, let's talk about happy biscuit (not me I swear)
-          </p>
+          <p>Hi, I'm happy biscuit, and I'm a big F1 enthusiast! I also love to code, build and network with people. I
+            play guitar, piano and a little bit of violin. I'm a big fan of cooking too. Well enough talk about me,
+            let's talk about happy biscuit (not me I swear).</p>
         </div>
         <div class="about__card fade-in">
           <h3 class="about__card-title">The brand</h3>
@@ -81,7 +81,20 @@
   <script>
     const toggle = document.querySelector('.nav-toggle');
     const navLinks = document.querySelector('.main-nav__links');
-    if (toggle) toggle.addEventListener('click', () => navLinks.classList.toggle('open'));
+    if (toggle && navLinks) {
+      toggle.addEventListener('click', () => {
+        const isOpen = navLinks.classList.toggle('open');
+        toggle.classList.toggle('open', isOpen);
+        toggle.setAttribute('aria-expanded', String(isOpen));
+      });
+      navLinks.querySelectorAll('.nav__link').forEach((link) => {
+        link.addEventListener('click', () => {
+          navLinks.classList.remove('open');
+          toggle.classList.remove('open');
+          toggle.setAttribute('aria-expanded', 'false');
+        });
+      });
+    }
 
     const observer = new IntersectionObserver((entries) => {
       entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
